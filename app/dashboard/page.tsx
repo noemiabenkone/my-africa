@@ -1,6 +1,7 @@
 "use client"
-
+import { BotMessageSquare } from "lucide-react"
 import { useState, useEffect } from "react"
+import { useRouter } from "next/navigation";
 
 export default function Page() {
 
@@ -30,6 +31,7 @@ export default function Page() {
         }
         fetchCountries()
     },[])
+    const router = useRouter();
     return(
         <main className="bg-red-100 min-h-screen text-red-900 ">
             <header className="w-full bg-white flex justify-between items-center px-6 py-4 shadow-md text-2xl font-bold">
@@ -56,12 +58,18 @@ export default function Page() {
                  gap-6
             ">
                  {countries.map((country, index) => (
-              <div key={index} className="bg-white p-4 shadow-lg text-center rounded-lg">
-                 <img src={country.flags.png} alt={`Bandeira de ${country.name.common}`} className="mx-auto mb-2 h-16"/>
-                 <p className="font-semibold text-red-900">{country.name.common}</p>
-                 <p className="text-sm">Capital: {country.capital ? country.capital[0] : "N/A"}</p>
-                 <p className="text-sm">Área: {country.area.toLocaleString()} km²</p>
-              </div>
+                <div 
+                   key={index}
+                   onClick={() =>{router.push(`/chat?country=${country.name.common}`)}} 
+                   className="bg-white p-4 shadow-lg text-center rounded-lg">
+                   <img 
+                      src={country.flags.png} 
+                      alt={`Bandeira de ${country.name.common}`} 
+                      className="mx-auto mb-2 h-16"/>
+                   <p className="font-semibold text-red-900">{country.name.common}</p>
+                   <p className="text-sm">Capital: {country.capital ? country.capital[0] : "N/A"}</p>
+                   <p className="text-sm">Área: {country.area.toLocaleString()} km²</p>
+                </div>
   ))}
             </section>
         </main>
