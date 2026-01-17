@@ -1,3 +1,4 @@
+
 "use client";
 
 import { useSearchParams } from "next/navigation";
@@ -18,27 +19,24 @@ export default function ChatPage() {
   }
 
   return (
-    <main className="min-h-screen bg-red-200 flex items-center justify-center">
-      <div className="w-full max-w-sm p-6 bg-red-300 rounded-lg shadow-lg flex flex-col gap-4">
+    <main className="min-h-screen bg-red-900 flex justify-center pt-10">
+      <div className="w-full max-w-xl h-[85vh] p-6 flex flex-col gap-4">
         
-        
-        <h1 className="text-2xl font-bold text-center">
+        <h1 className="text-2xl font-bold text-center text-white">
           Conversando sobre {country}
         </h1>
 
-        
-        <div className="flex flex-col gap-2">
+        <div className="flex-1 flex flex-col gap-2 overflow-y-auto">
           {messages.map((msg, index) => (
             <div
               key={index}
-              className="bg-white p-2 rounded text-sm"
+              className="text-sm text-white"
             >
               {msg}
             </div>
           ))}
         </div>
 
-    
         <div className="flex gap-2">
           <input
             value={question}
